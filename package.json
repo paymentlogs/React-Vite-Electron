@@ -1,0 +1,84 @@
+{
+  "name": "react-vite-electron-boilerplate",
+  "version": "0.0.0",
+  "main": "packages/backend/background.js",
+  "author": {
+    "name": "paymentlogs"
+  },
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 5050",
+    "electron:serve": "wait-on tcp:8080 && cross-env NODE_ENV=development electron .",
+    "app:serve": "concurrently -k \"yarn dev\" \"yarn electron:serve\"",
+    "pack": "electron-builder --dir",
+    "build:electron": "electron-builder build",
+    "bytenode": "electron ./packages/scripts/bytenode.js",
+    "app:build": "yarn build && yarn bytenode && yarn build:electron",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "dependencies": {
+    "bytenode": "^1.4.1",
+    "electron-store": "^8.1.0",
+    "got": "11.8.6",
+    "moment": "^2.29.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "terser": "^5.17.6"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.37",
+    "@types/react-dom": "^18.0.11",
+    "@vitejs/plugin-react": "^4.0.0",
+    "asarmor": "^2.1.0-beta.10",
+    "concurrently": "^8.0.1",
+    "cross-env": "^7.0.3",
+    "electron": "^25.0.1",
+    "electron-builder": "^23.6.0",
+    "eslint": "^8.38.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.3.4",
+    "javascript-obfuscator": "^4.0.2",
+    "rollup-plugin-obfuscator": "^1.0.3",
+    "rollup-plugin-uglify": "^6.0.4",
+    "uglify-js": "^3.17.4",
+    "vite": "^4.3.9",
+    "wait-on": "^7.0.1"
+  },
+  "build": {
+    "afterPack": "./packages/scripts/armor.js",
+    "copyright": "Copyright © 2023 ${author}",
+    "productName": "Pearson React Template",
+    "appId": "payment.logs",
+    "directories": {
+      "output": "Production Builds/Version ${version}"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": false,
+      "shortcutName": "Pearson React Template"
+    },
+    "files": [
+      "node_modules/**/*",
+      "package.json",
+      {
+        "from": "Built App/frontend",
+        "to": "packages/frontend",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "Built App/backend",
+        "to": "packages/backend",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ]
+  }
+}
