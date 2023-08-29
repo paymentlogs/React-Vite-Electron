@@ -22,7 +22,7 @@ const createWindow = async () => {
     resizable: false,
     fullscreenable: false,
     roundedCorners: true,
-    title: "paymentlogs React Electron Boilerplate",
+    title: "voromade React Electron Boilerplate",
     webPreferences: {
       enableRemoteModule: true,
       nodeIntegration: true,

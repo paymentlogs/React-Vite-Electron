@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "main": "packages/backend/background.js",
   "author": {
-    "name": "paymentlogs"
+    "name": "voromade"
   },
   "private": true,
   "license": "UNLICENSED",
@@ -51,7 +51,7 @@
   "build": {
     "afterPack": "./packages/scripts/armor.js",
     "copyright": "Copyright © 2023 ${author}",
-    "productName": "PaymentLogs React Template",
+    "productName": "voromade React Template",
     "appId": "payment.logs",
     "directories": {
       "output": "Production Builds/Version ${version}"
@@ -60,7 +60,7 @@
       "oneClick": true,
       "perMachine": false,
       "allowToChangeInstallationDirectory": false,
-      "shortcutName": "Paymentlogs React Template"
+      "shortcutName": "voromade React Template"
     },
     "files": [
       "node_modules/**/*",
